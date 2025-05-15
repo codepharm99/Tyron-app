@@ -6,7 +6,7 @@ import "./FeedFull.css";
 import './App.css'; // или './FeedFull.css'
 // Хук для адаптивных размеров камеры и canvas
 function useMediaSize() {
-  const [mediaSize, setMediaSize] = useState({ width: 300, height: 400 });
+  const [mediaSize, setMediaSize] = useState({ width: 150, height: 200 });
 
   useLayoutEffect(() => {
     function update() {
