@@ -18,8 +18,8 @@ Object.entries(overlayUrls).forEach(([key, url]) => {
   overlayImages[key] = img;
 });
 
-const MEDIA_WIDTH = 300;
-const MEDIA_HEIGHT = 200;
+const MEDIA_WIDTH = 200;
+const MEDIA_HEIGHT = 300;
 // Добавить до export default function App()
 const feedItems = [
   {
