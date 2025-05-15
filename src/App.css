@@ -206,8 +206,8 @@ main {
 /* Камера и canvas */
 .media-wrapper, .modal-screen {
   position: relative;
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 200px;
   background: #fff;
   border: 2.5px solid #111;
   border-radius: 0;

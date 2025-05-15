@@ -340,50 +340,56 @@ export default function App() {
 
   {screen === "camera" && (
     <>
-      <div
-        className="media-wrapper"
-        style={{
-          width: MEDIA_WIDTH,
-          height: MEDIA_HEIGHT,
-          position: "relative",
-          margin: "32px auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#fff",
-          border: "2px solid #222",
-          borderRadius: 14,
-          boxSizing: "border-box"
-        }}>
-        <Webcam
-          ref={webcamRef}
-          className="camera-view"
-          style={{
-            width: MEDIA_WIDTH,
-            height: MEDIA_HEIGHT,
-            position: "absolute",
-            left: 0,
-            top: 0,
-            objectFit: "cover",
-          }}
-          audio={false}
-          mirrored={false}
-          screenshotFormat="image/jpeg"
-        />
-        <canvas
-          ref={canvasRef}
-          className="overlay"
-          style={{
-            width: MEDIA_WIDTH,
-            height: MEDIA_HEIGHT,
-            position: "absolute",
-            left: 0,
-            top: 0,
-            pointerEvents: "none",
-            objectFit: "cover",
-          }}
-        />
-      </div>
+     <div
+  className="media-wrapper"
+  style={{
+    width: MEDIA_WIDTH,
+    height: MEDIA_HEIGHT,
+    position: "relative",
+    margin: "32px auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#fff",
+    border: "2px solid #222",
+    borderRadius: 14,
+    boxSizing: "border-box"
+  }}>
+  <Webcam
+    ref={webcamRef}
+    className="camera-view"
+    style={{
+      width: MEDIA_WIDTH,
+      height: MEDIA_HEIGHT,
+      position: "absolute",
+      left: 0,
+      top: 0,
+      objectFit: "cover"
+    }}
+    audio={false}
+    mirrored={false}
+    screenshotFormat="image/jpeg"
+    videoConstraints={{
+      width: MEDIA_WIDTH,
+      height: MEDIA_HEIGHT,
+      facingMode: "user"
+    }}
+  />
+  <canvas
+    ref={canvasRef}
+    className="overlay"
+    width={MEDIA_WIDTH}
+    height={MEDIA_HEIGHT}
+    style={{
+      width: MEDIA_WIDTH,
+      height: MEDIA_HEIGHT,
+      position: "absolute",
+      left: 0,
+      top: 0,
+      pointerEvents: "none"
+    }}
+  />
+</div>
       <div style={{ display: "flex", justifyContent: "center", marginTop: 32 }}>
         <button
           onClick={() => {
