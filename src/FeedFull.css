@@ -1,0 +1,129 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  font-family: 'Roboto Mono', monospace, Arial, sans-serif;
+  color: #111;
+}
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+.header {
+  position: fixed;
+  top: 0; left: 0; width: 100vw;
+  z-index: 10;
+  height: 60px;
+  background: #ff006c;
+  color: #111;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  border-bottom: 2.5px solid #111;
+  box-shadow: none;
+  text-transform: uppercase;
+  font-family: 'Roboto Mono', monospace;
+}
+.main-feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: #fff;
+}
+
+/* Для media-wrapper/camera/foto/canvas */
+.media-wrapper {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2.5px solid #111;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: none;
+}
+.feed-list {
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  background: #fff;
+  padding: 0;
+}
+.feed-card {
+  width: 100vw;
+  height: calc(100vh - 60px);
+  min-width: 100vw;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  border: 2.5px solid #111;
+  box-sizing: border-box;
+}
+.feed-card:nth-child(even) {
+  background: #ffe900;
+}
+.feed-card:nth-child(odd) {
+  background: #fff;
+}
+.feed-card.active,
+.feed-card:hover {
+  outline: 4px solid #0077ff;
+}
+.feed-try-btn, .btn-primary {
+  background: #39ff14;
+  color: #111;
+  border: 2.5px solid #111;
+  border-radius: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.feed-try-btn:hover,
+.btn-primary:hover {
+  background: #111;
+  color: #39ff14;
+  border-color: #39ff14;
+}
+.feed-bottom {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+}
+
+@media (max-width: 600px) {
+  .feed-bottom {
+    padding-left: 7vw;
+    padding-right: 7vw;
+    padding-bottom: 5vw;
+  }
+}
