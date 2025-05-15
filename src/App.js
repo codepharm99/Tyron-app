@@ -333,7 +333,10 @@ export default function App() {
           <img src="/pics/arrow-back-try.png" alt="Back" />
         </button>
       )}
-      <main className="main-feed">
+      <main
+        className="main-feed"
+        style={{ paddingBottom: "calc(32px + env(safe-area-inset-bottom, 0))" }}
+      >
   {screen === "feed" && (
     <Feed feedItems={feedItems} onTry={handleTry} />
   )}
@@ -456,7 +459,15 @@ export default function App() {
           }}
         />
       </div>
-      <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 16 }}>
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+          justifyContent: "center",
+          marginTop: 16,
+          paddingBottom: "calc(32px + env(safe-area-inset-bottom, 0))"
+        }}
+      >
         <button
           onClick={() => setScreen("camera")}
           style={{
