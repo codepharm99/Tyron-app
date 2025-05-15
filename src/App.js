@@ -1,9 +1,26 @@
 // src/App.js
-import React, { useRef, useCallback, useEffect, useState } from "react";
+import React, { useRef, useCallback, useEffect, useState, useLayoutEffect } from "react";
 import Webcam from "react-webcam";
 import Feed from "./Feed";
 import "./FeedFull.css";
 import './App.css'; // или './FeedFull.css'
+// Хук для адаптивных размеров камеры и canvas
+function useMediaSize() {
+  const [mediaSize, setMediaSize] = useState({ width: 300, height: 400 });
+
+  useLayoutEffect(() => {
+    function update() {
+      const isMobile = window.innerWidth < 600;
+      const width = isMobile ? Math.min(window.innerWidth * 0.97, 400) : 300;
+      setMediaSize({ width, height: Math.round(width * 4 / 3) });
+    }
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return mediaSize;
+}
 // Предварительная загрузка изображений-оверлеев
 const overlayUrls = {
   glasses: "https://static.vecteezy.com/system/resources/previews/048/220/008/non_2x/black-rimmed-sunglasses-free-png.png",
@@ -18,8 +35,6 @@ Object.entries(overlayUrls).forEach(([key, url]) => {
   overlayImages[key] = img;
 });
 
-const MEDIA_WIDTH = 200;
-const MEDIA_HEIGHT = 300;
 // Добавить до export default function App()
 const feedItems = [
   {
@@ -65,6 +80,8 @@ export default function App() {
   const canvasRef = useRef();
   const photoCanvasRef = useRef();
   const [landmarks, setLandmarks] = useState(null);
+
+  const { width: MEDIA_WIDTH, height: MEDIA_HEIGHT } = useMediaSize();
 
   // Внутри App (после хуков), добавить:
   const handleTry = (overlayKey) => {
@@ -323,7 +340,21 @@ export default function App() {
 
   {screen === "camera" && (
     <>
-      <div className="media-wrapper" style={{width: MEDIA_WIDTH, height: MEDIA_HEIGHT, position: "relative"}}>
+      <div
+        className="media-wrapper"
+        style={{
+          width: MEDIA_WIDTH,
+          height: MEDIA_HEIGHT,
+          position: "relative",
+          margin: "32px auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#fff",
+          border: "2px solid #222",
+          borderRadius: 14,
+          boxSizing: "border-box"
+        }}>
         <Webcam
           ref={webcamRef}
           className="camera-view"
@@ -333,6 +364,7 @@ export default function App() {
             position: "absolute",
             left: 0,
             top: 0,
+            objectFit: "cover",
           }}
           audio={false}
           mirrored={false}
@@ -342,12 +374,13 @@ export default function App() {
           ref={canvasRef}
           className="overlay"
           style={{
+            width: MEDIA_WIDTH,
+            height: MEDIA_HEIGHT,
             position: "absolute",
             left: 0,
             top: 0,
-            width: MEDIA_WIDTH,
-            height: MEDIA_HEIGHT,
             pointerEvents: "none",
+            objectFit: "cover",
           }}
         />
       </div>
@@ -389,7 +422,21 @@ export default function App() {
 
   {screen === "tryon" && (
     <>
-      <div className="media-wrapper" style={{width: MEDIA_WIDTH, height: MEDIA_HEIGHT, position: "relative"}}>
+      <div
+        className="media-wrapper"
+        style={{
+          width: MEDIA_WIDTH,
+          height: MEDIA_HEIGHT,
+          position: "relative",
+          margin: "32px auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#fff",
+          border: "2px solid #222",
+          borderRadius: 14,
+          boxSizing: "border-box"
+        }}>
         <canvas
           ref={photoCanvasRef}
           style={{
@@ -399,6 +446,7 @@ export default function App() {
             left: 0,
             top: 0,
             borderRadius: 12,
+            objectFit: "cover",
           }}
         />
       </div>
